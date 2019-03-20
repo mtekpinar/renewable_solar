@@ -81,3 +81,65 @@ print("Eccent Earth Orbit:",eeo)
 seoc=(math.sin((gmas))*(1.914602-jc*(0.004817+0.000014*jc))+math.sin((2*gmas))*(0.019993-0.000101*jc)+math.sin((3*gmas))*0.000289)
 
 print("Sun Eq of Ctr:",seoc)
+
+
+# bu niye yanlış ???
+
+#########  Sun True Long (deg)  #######33
+
+
+stl=gmls+seoc
+
+print("Sun True Long (deg):",stl)
+
+# tabi bu da yanlış oluyor
+
+########## Sun True Anom (deg) ############
+
+
+sta=gmas+seoc
+
+print("Sun True Anom (deg)",sta)
+
+# tabi bu da yanlış oluyor
+
+#########  Sun Rad Vector (AUs) #########
+
+srv=(1.000001018*(1-eeo*eeo))/(1+eeo*math.cos((sta)))
+
+print("Sun Rad Vector (AUs):",sta)
+
+# tabi bu da yanlış oluyor
+
+####### Sun App Long (deg)  ##########
+
+sal=(stl-0.00569-0.00478*math.sin((125.04-1934.136*jc)))
+
+print("Sun App Long (deg):",sal)
+
+# tabi bu da yanlış oluyor
+
+####### Mean Obliq Ecliptic (deg) ##########
+
+moe=23+(26+((21.448-jc*(46.815+jc*(0.00059-jc*0.001813))))/60)/60
+
+print("Mean Obliq Ecliptic (deg):",moe)
+
+######### Obliq Corr (deg) #########
+
+oc=moe+0.00256*math.cos((125.04-1934.136*jc))
+
+print("Obliq Corr (deg):",oc)
+
+# tabi bu da yanlış oluyor
+
+########### Sun Rt Ascen (deg)  ########
+
+#srta=DERECE(ATAN2(COS(RADYAN(P225));COS(RADYAN(R225))*SİN(RADYAN(P225))))
+
+#python koda bakılacak
+
+
+
+
+
