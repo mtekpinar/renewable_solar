@@ -199,5 +199,49 @@ print("Var y:",vary)
 ###################  Eq of Time (minutes) #####################
 #u=vary
 #k=eeo
+#I =gmls
+#j=gmas
 
 #=4*DERECE(U85*SİN(2*RADYAN(I85))-2*K85*SİN(RADYAN(J85))+4*K85*U85*SİN(RADYAN(J85))*COS(2*RADYAN(I85))-0,5*U85*U85*SİN(4*RADYAN(I85))-1,25*K85*K85*SİN(2*RADYAN(J85)))
+eot=4*(math.degrees(vary*math.sin(2*math.radians(gmls))-(2*eeo*math.sin(math.radians(gmas)))+4*eeo*(math.sin(math.radians(gmas)))*(math.cos(2*(math.radians(gmls))))-0.5*vary*vary*(math.sin(4*(math.radians(gmls))))-1.25*eeo*eeo*(math.sin(2*(math.radians(gmas))))))
+
+print("Eq of Time:",eot)
+
+#yanlış oldu
+
+
+
+
+
+
+
+
+
+
+
+"""
+import math
+
+
+print("ilk ve DOĞRU ",math.sin(math.pi/6))
+
+print("ikinci ve YANLIŞ ",math.sin(math.degrees(math.pi/6)))
+#Yukarıdaki print(math.sin(30)) ile aynı demek yani içine rakam yazınca önüne math.degrees yazmalısın
+# bu da tüm hesaplamalarını değiştiririr 
+
+# BUNU KULLANMA KESİNLİKLE
+
+
+print("Radyanı dereceye Çivirir:",math.degrees((math.pi)/6))
+
+# BU RADYAN CİNSİNDEN OLANI DERECEYE ÇEVİRİR SADECE DERECEYE İHTYANCIN VARSA KULLAN
+
+print("üçüncü ve DOĞRU",math.sin(math.radians(30)))
+
+# math.radians(30) dereceyi radyana çevirip yazınca DÜZGÜN OLUYOR
+
+# !!!!! DERECE CİNSİNDEN GİRİLEN DEĞERLERİ BÖYLE YAZ !!!!!!!!!!!!
+
+
+
+"""
