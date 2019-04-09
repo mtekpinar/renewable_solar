@@ -202,13 +202,115 @@ print("Var y:",vary)
 #I =gmls
 #j=gmas
 
-#=4*DERECE(U85*SİN(2*RADYAN(I85))-2*K85*SİN(RADYAN(J85))+4*K85*U85*SİN(RADYAN(J85))*COS(2*RADYAN(I85))-0,5*U85*U85*SİN(4*RADYAN(I85))-1,25*K85*K85*SİN(2*RADYAN(J85)))
-eot=4*(math.degrees(vary*math.sin(2*math.radians(gmls))-(2*eeo*math.sin(math.radians(gmas)))+4*eeo*(math.sin(math.radians(gmas)))*(math.cos(2*(math.radians(gmls))))-0.5*vary*vary*(math.sin(4*(math.radians(gmls))))-1.25*eeo*eeo*(math.sin(2*(math.radians(gmas))))))
+
+
+#=4*DERECE(U92*SİN(2*RADYAN(I92))-2*K92*SİN(RADYAN(J92))+4*K92*U92*SİN(RADYAN(J92))*COS(2*RADYAN(I92))-0,5*U92*U92*SİN(4*RADYAN(I92))-1,25*K92*K92*SİN(2*RADYAN(J92)))
+
+
+eot=4*math.degrees((vary*math.sin(math.radians(2*gmls))-2*eeo*math.sin(math.radians(gmas))+4*eeo*vary*math.sin(math.radians(gmas))*math.cos(math.radians(2*gmls))-0.5*vary*vary*math.sin(math.radians(4*gmls))-1.25*eeo*eeo*math.sin(math.radians(2*gmas))))
+
+
+
+
 
 print("Eq of Time:",eot)
 
-#yanlış oldu
 
+#yanlış oldu, artık doğru 09.04.2019
+
+
+
+##############  HA Sunrise (deg)  #############
+
+# =DERECE(ACOS(COS(RADYAN(90,833))/(COS(RADYAN($B$3))*COS(RADYAN(T131)))-TAN(RADYAN($B$3))*TAN(RADYAN(T131))))
+latitute=40
+
+has=math.degrees(math.acos(math.cos(math.radians(90.833))/(math.cos(math.radians(latitute))*math.cos(math.radians(sd)))-math.tan(math.radians(latitute))*math.tan(math.radians(sd))))
+
+
+print("HA Sunrise (deg): ", has)
+
+
+
+################## Solar Noon (LST)  ###################3
+
+
+longitute= 30 
+
+# =(720-4*$B$4-V7+$B$5*60)/1440
+
+solnoon=((720-4*longitute-eot+timezone*60)/1440)
+
+solnoontime=((720-4*longitute-eot+timezone*60)/1440)*24
+
+# * 24 yapınca tuttu ya la :)
+
+
+print("Solar Noon (LST) :",solnoontime)
+
+
+
+
+#############  Sunrise Time (LST)  ##############
+
+
+# =X2-W2*4/1440
+
+srtime=solnoon-has*4/1440
+
+srtime24=(solnoon-has*4/1440)*24
+
+# 6,53 demek 6:32 demek
+
+print("Sunrise Time (LST): ",srtime24)
+
+
+############ Sunset Time (LST)  ###############
+
+#X4+W4*4/1440
+
+sstime=solnoon+has*4/1440
+
+sstime24=(solnoon +has*4/1440)*24
+
+# 6,53 demek 6:32 demek
+
+print("Sunset Time (LST) : ",sstime24)
+
+#################  Sunlight Duration (minutes)  ################
+
+
+# =8*W132
+
+sld=8*has
+
+print("Sunlight Duration (minutes): ",sld)
+
+
+############### True Solar Time (min)  ##################
+# e= anlık zaman BUrada anlık zmaan nasıl girilicek 0.58 gibi yani 13:00
+#v=eot
+#b4=longitute
+#b5=timezone
+
+#=MOD(E6*1440+V6+4*$B$4-60*$B$5;1440)
+
+tst=(((an.hour/24)*1440*eot*longitute-60*timezone)%1440)
+
+
+print("True Solar Time (min)",tst)
+
+print("saat:",an.hour/24)
+
+
+#  Bu yanlış oldu
+
+
+
+#############  Hour Angle (deg)  ##################
+
+
+#=EĞER(AB9/4<0;AB9/4+180;AB9/4-180)
 
 
 
@@ -221,27 +323,14 @@ print("Eq of Time:",eot)
 
 """
 import math
-
-
 print("ilk ve DOĞRU ",math.sin(math.pi/6))
-
 print("ikinci ve YANLIŞ ",math.sin(math.degrees(math.pi/6)))
 #Yukarıdaki print(math.sin(30)) ile aynı demek yani içine rakam yazınca önüne math.degrees yazmalısın
 # bu da tüm hesaplamalarını değiştiririr 
-
 # BUNU KULLANMA KESİNLİKLE
-
-
 print("Radyanı dereceye Çivirir:",math.degrees((math.pi)/6))
-
 # BU RADYAN CİNSİNDEN OLANI DERECEYE ÇEVİRİR SADECE DERECEYE İHTYANCIN VARSA KULLAN
-
 print("üçüncü ve DOĞRU",math.sin(math.radians(30)))
-
 # math.radians(30) dereceyi radyana çevirip yazınca DÜZGÜN OLUYOR
-
 # !!!!! DERECE CİNSİNDEN GİRİLEN DEĞERLERİ BÖYLE YAZ !!!!!!!!!!!!
-
-
-
 """
