@@ -302,6 +302,8 @@ print("True Solar Time (min)",tst)
 
 print("saat:",an.hour/24)
 
+print("saat server:",an.hour,"minute:",an.minute)
+
 
 #  Bu yanlış oldu
 
@@ -311,6 +313,84 @@ print("saat:",an.hour/24)
 
 
 #=EĞER(AB9/4<0;AB9/4+180;AB9/4-180)
+
+if((tst/4)<0):
+  ha=(tst/4)+180
+  print("Hour Angle (deg)[tst/<0] :",ha)
+
+else:
+  ha=(tst/4)-180
+  print("Hour Angle (deg) [tst/>0] :",ha)
+
+#  Bu yanlış oldu.
+
+
+########## Solar Zenith Angle (deg)  ####################
+#b3= latitute
+#t = sd
+#ac=ha
+#=DERECE(ACOS(SİN(RADYAN($B$3))*SİN(RADYAN(T188))+COS(RADYAN($B$3))*COS(RADYAN(T188))*COS(RADYAN(AC188))))
+
+sza=math.degrees(math.acos(math.sin(math.radians(latitute))*math.sin(math.radians(sd))+math.cos(math.radians(latitute))*math.cos(math.radians(sd))*math.cos(math.radians(ha))))
+
+print("Solar Zenith Angle (deg): ",sza)
+
+#  Bu yanlış oldu.
+
+
+############ Solar Elevation Angle (deg) ##############3333
+
+#=90-AD180
+
+sea=90-sza
+
+print("Solar Elevation Angle (deg):", sea)
+
+#  Bu yanlış oldu.
+
+
+############ Approx Atmospheric Refraction (deg)  ################
+
+#aar=EĞER(AE180>85;0;EĞER(AE180>5;58,1/TAN(RADYAN(AE180))-0,07/KUVVET(TAN(RADYAN(AE180));3)+0,000086/KUVVET(TAN(RADYAN(AE180));5);EĞER(AE180>-0,575;1735+AE180*(-518,2+AE180*(103,4+AE180*(-12,79+AE180*0,711)));-20,772/TAN(RADYAN(AE180)))))/3600
+
+#ae=sea
+# kuvvet (alttaki, üssü) kuvvet(2,3)=8
+
+if (sea>85):
+  aar=0
+  print("aar (sea>85):",aar)
+
+else:
+  if (sea>5):
+    aar=58
+    print("aar(sea>5):",aar)
+
+  else:
+    aar=1/(math.tan(math.radians(sea))-0.07/(math.tan(math.radians(sea))**3)+0.000086/(math.tan(math.radians(sea))**5))
+
+aar="Yukaridaki"
+
+aar=5
+
+
+############# Solar Elevation corrected for atm refraction (deg) ####
+
+#=AE174+AF174
+
+secfar=sea+aar
+
+print("Solar Elevation corrected for atm refraction (deg):",secfar)
+
+
+
+########### Solar Azimuth Angle (deg cw from N) ############
+
+
+#saa=EĞER(AC176>0;MOD(DERECE(ACOS(((SİN(RADYAN($B$3))*COS(RADYAN(AD176)))-SİN(RADYAN(T176)))/(COS(RADYAN($B$3))*SİN(RADYAN(AD176)))))+180;360);MOD(540-DERECE(ACOS(((SİN(RADYAN($B$3))*COS(RADYAN(AD176)))-SİN(RADYAN(T176)))/(COS(RADYAN($B$3))*SİN(RADYAN(AD176)))));360))
+
+
+
+
 
 
 
